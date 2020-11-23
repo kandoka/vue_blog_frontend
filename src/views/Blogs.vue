@@ -5,6 +5,7 @@
     <div class="block">
 <!--带时间线的列表-->
       <el-timeline>
+        
         <el-timeline-item :timestamp="blog.created" placement="top" v-for="blog in blogs">
           <el-card>
             <h4>
@@ -18,7 +19,7 @@
         </el-timeline-item>
 
       </el-timeline>
-
+<!--分页-->
       <el-pagination class="m-page"
                      background
                      layout="prev, pager, next"
