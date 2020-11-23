@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/',
     name: 'Index',
-    redirect: {name: "Blogs"}//重定向
+    redirect: {name: "Login"}//重定向
   },
   {
     path: '/blogs',
