@@ -75,6 +75,10 @@
           }
         });
       },
+      /**
+       * 重置输入的信息
+       * @param formName
+       */
       resetForm(formName) {
         this.$refs[formName].resetFields();
       }

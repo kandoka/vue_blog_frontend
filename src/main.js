@@ -13,6 +13,11 @@ import axios from 'axios'
 Vue.prototype.$axios = axios
 import "./axios"  //导入前置拦截和后置拦截的配置axios.js
 
+//导入并全局注册富文本编辑器mavonEditor
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+
 Vue.config.productionTip = false
 
 new Vue({
