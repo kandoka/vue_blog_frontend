@@ -1,19 +1,78 @@
 <template>
-  <div>
+  <div class="mcontaner">
     <Header></Header>
-    Blogs
+
+    <div class="block">
+<!--带时间线的列表-->
+      <el-timeline>
+        <el-timeline-item :timestamp="blog.created" placement="top" v-for="blog in blogs">
+          <el-card>
+            <h4>
+<!--路由跳转到博客的详情界面，参数带上博客的id-->
+              <router-link :to="{name: 'BlogDetail', params: {blogId: blog.id}}">
+                {{blog.title}}
+              </router-link>
+            </h4>
+            <p>{{blog.description}}</p>
+          </el-card>
+        </el-timeline-item>
+
+      </el-timeline>
+
+      <el-pagination class="m-page"
+                     background
+                     layout="prev, pager, next"
+                     :current-page="currentPage"
+                     :page-size="pageSize"
+                     :total="total"
+                     @current-change=page>
+      </el-pagination>
+
+    </div>
+
   </div>
 </template>
 
 <script>
   import Header from "../components/Header";
+
   export default {
-    name: "Blogs",
+    name: "Blogs.vue",
     components: {Header},
-    comments: {Header}
+    data() {
+      return {
+        blogs: {},
+        currentPage: 1,
+        total: 0,
+        pageSize: 5
+      }
+    },
+    methods: {
+      /**
+       * 分页方法
+       * @param currentPage
+       */
+      page(currentPage) {
+        const _this = this
+        _this.$axios.get("/blogs?currentPage=" + currentPage).then(res => {
+          console.log(res)
+          _this.blogs = res.data.data.records
+          _this.currentPage = res.data.data.current
+          _this.total = res.data.data.total
+          _this.pageSize = res.data.data.size
+
+        })
+      }
+    },
+    created() {
+      this.page(1)
+    }
   }
 </script>
 
 <style scoped>
-
+  .m-page {
+    margin: 0 auto;
+    text-align: center;
+  }
 </style>

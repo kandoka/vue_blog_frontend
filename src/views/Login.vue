@@ -17,7 +17,7 @@
           </el-form-item>
 <!--按钮-->
           <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
         </el-form>
@@ -58,14 +58,15 @@
           if (valid) {//如果合法
             const _this = this
             this.$axios.post('/login', this.ruleForm).then(res => {
-              console.log(res.data)
-              const jwt = res.headers['authorization']
+              // console.log(res.data)
+              const jwt = res.headers['authorization']//这里变量名必须小写
+              // console.log("jwt: ", res.headers)
               const userInfo = res.data.data
               // 把数据共享出去
               _this.$store.commit("SET_TOKEN", jwt)
               _this.$store.commit("SET_USERINFO", userInfo)
               // 获取
-              console.log(_this.$store.getters.getUser)
+              // console.log(_this.$store.getters.getUser)
               _this.$router.push("/blogs")
             })
           } else {
