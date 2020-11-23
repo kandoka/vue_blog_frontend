@@ -49,9 +49,13 @@
       };
     },
     methods: {
+      /**
+       * 提交登录表单
+       * @param formName
+       */
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
-          if (valid) {
+          if (valid) {//如果合法
             const _this = this
             this.$axios.post('/login', this.ruleForm).then(res => {
               console.log(res.data)

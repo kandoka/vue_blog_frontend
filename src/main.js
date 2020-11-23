@@ -11,6 +11,7 @@ Vue.use(Element)
 //导入axios并全局使用
 import axios from 'axios'
 Vue.prototype.$axios = axios
+import "./axios"  //导入前置拦截和后置拦截的配置axios.js
 
 Vue.config.productionTip = false
 
