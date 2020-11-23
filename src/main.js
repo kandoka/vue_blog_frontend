@@ -18,6 +18,9 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
+//导入权限验证模块
+import "./permission"
+
 Vue.config.productionTip = false
 
 new Vue({

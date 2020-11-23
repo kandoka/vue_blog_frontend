@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
-import BlogDetail from '../views/BlogDetail.vue'
-import BlogEdit from '../views/BlogEdit.vue'
 import Blogs from '../views/Blogs.vue'
-
+import BlogEdit from '../views/BlogEdit.vue'
+import BlogDetail from '../views/BlogDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -12,7 +11,7 @@ const routes = [
   {
     path: '/',
     name: 'Index',
-    redirect: {name: "Login"}//重定向
+    redirect: {name: "Blogs"}
   },
   {
     path: '/blogs',
@@ -26,8 +25,11 @@ const routes = [
   },
   {
     path: '/blog/add',
-    name: 'BlogEdit',
-    component: BlogEdit
+    name: 'BlogAdd',
+    component: BlogEdit,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     path: '/blog/:blogId',
@@ -37,7 +39,10 @@ const routes = [
   {
     path: '/blog/:blogId/edit',
     name: 'BlogEdit',
-    component: BlogEdit
+    component: BlogEdit,
+    meta: {
+      requireAuth: true
+    }
   }
 ]
 
